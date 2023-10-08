@@ -32,6 +32,7 @@ public class InteractorBehaviour : MonoBehaviour
                 interactable.Interact(this);
             }
         }
+        
 
     }
 

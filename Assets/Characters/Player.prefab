@@ -447,6 +447,7 @@ GameObject:
   - component: {fileID: 3485320179010012210}
   - component: {fileID: 5177141279432900609}
   - component: {fileID: 5611063454405242975}
+  - component: {fileID: 89655510953486219}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -569,3 +570,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _numFound: 0
+--- !u!114 &89655510953486219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8950814985405267617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2b1420b34330d4089544d1ca411fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holdingCorpse: 1
+  _corpseName: McMuffin
+  _ownerName: Player

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4864372699149629198}
   - component: {fileID: 7907592292109855003}
   - component: {fileID: 5832873142706130107}
+  - component: {fileID: -3978658870867161928}
   m_Layer: 9
   m_Name: Grave
   m_TagString: Interactable
@@ -119,3 +120,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompt: 
+--- !u!114 &-3978658870867161928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8266561206481511123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a2b1420b34330d4089544d1ca411fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _holdingCorpse: 0
+  _corpseName: 
+  _ownerName: Grave
