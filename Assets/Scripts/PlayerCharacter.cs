@@ -65,12 +65,13 @@ public class PlayerCharacter : BasicCharacter
         movement.y = 0;
         movement.z = verticalMovementInput;
         
-
+        
         _movementBehaviour.DesiredMovementDirection = movement;
     }
 
     private void HandleInteract(InputAction.CallbackContext context)
     {
+        //seperated to an interactor system to decouple
         //Debug.Assert(false, "pressed interact key"); //test to see if button works
     }
 

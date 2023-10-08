@@ -44,7 +44,7 @@ public class MovementBehaviour : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         HandleMovement();
-
+        RotateWithInput();
         //check ground collision
         _isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down,
             GROUND_CHECK_DISTANCE, LayerMask.GetMask("Ground"));
@@ -65,4 +65,16 @@ public class MovementBehaviour : MonoBehaviour
 
 
     }
+    private void RotateWithInput()
+    {
+        if (_desiredMovementDirection != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(DesiredMovementDirection, Vector3.up);
+            Quaternion rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360f); //no limit to how much rotation is allowed;
+
+            _rigidBody.MoveRotation(rotation);
+        }
+
+    }
+
 }
