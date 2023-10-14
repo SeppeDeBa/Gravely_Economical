@@ -6,6 +6,7 @@ public class GraveBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
 
+    [SerializeField]
     CorpseInventory _corpseInventory;
 
     public string InteractionPrompt => _prompt; //=> is an interactionbuddy (for personal references)

@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompt: 
+  _corpseInventory: {fileID: -3978658870867161928}
 --- !u!114 &-3978658870867161928
 MonoBehaviour:
   m_ObjectHideFlags: 0

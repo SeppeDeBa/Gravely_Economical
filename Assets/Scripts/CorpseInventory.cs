@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class CorpseInventory : MonoBehaviour
 {
+    private bool _CarryingBehaviourDirtyFlag = false;
+
+
     [SerializeField]
     public bool _holdingCorpse = false;
 
@@ -14,6 +17,8 @@ public class CorpseInventory : MonoBehaviour
 
     [SerializeField]
     private string _ownerName = null; //for debugging purposes
+    [SerializeField]
+    Color _familyColor;
 
     private void Start()
     {
@@ -38,19 +43,26 @@ public class CorpseInventory : MonoBehaviour
     public void SwapCorpse(CorpseInventory otherInventory)
     {
         //check if you can get from other Invent
+        if (otherInventory == null)
+        {
+            Debug.Log("Null reference exception, otherInventory is null");
+            return;
+        }
         var otherActorInventory = otherInventory;
         string debugString = "Corpse given from ";
         if (!_holdingCorpse && otherActorInventory._holdingCorpse) 
         {
             _holdingCorpse = true;
             _corpseName = otherActorInventory._corpseName;
+           // _familyColor = otherActorInventory._familyColor;
             otherActorInventory._holdingCorpse = false;
 
             //debug
             debugString += otherActorInventory._ownerName;
             debugString += " to ";
             debugString += _ownerName;
-
+            //for corpse carrying behaviour
+            _CarryingBehaviourDirtyFlag = true;
         }
 
 
@@ -59,12 +71,15 @@ public class CorpseInventory : MonoBehaviour
         {
             _holdingCorpse = false;
             otherActorInventory._corpseName = _corpseName;
+            //otherActorInventory._familyColor = _familyColor;
             otherActorInventory._holdingCorpse = true;
 
             //debug
             debugString += _ownerName;
             debugString += " to ";
             debugString += otherActorInventory._ownerName;
+
+            _CarryingBehaviourDirtyFlag = true;
         }
 
         else
@@ -74,5 +89,24 @@ public class CorpseInventory : MonoBehaviour
       
         Debug.Log(debugString);
         
+        
+    }
+
+    public bool IsCarryingDirty()
+    {
+        return _CarryingBehaviourDirtyFlag;
+    }
+
+    public string GetCorpseName()
+    {
+        return _corpseName;
+    }
+    public Color GetColor()
+    {
+        return _familyColor;
+    }
+    public void CleanIsCarryingFlag()
+    {
+        _CarryingBehaviourDirtyFlag = false;
     }
 }
