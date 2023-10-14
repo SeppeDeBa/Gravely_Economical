@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CorpseInventory : MonoBehaviour
 {
-    private bool _CarryingBehaviourDirtyFlag = false;
+    private bool _CarryingBehaviourDirtyFlag = true;
 
 
     [SerializeField]
