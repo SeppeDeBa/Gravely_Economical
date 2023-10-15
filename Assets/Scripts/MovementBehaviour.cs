@@ -13,12 +13,12 @@ public class MovementBehaviour : MonoBehaviour
     protected const float GROUND_CHECK_DISTANCE = 0.2f;
     protected const string GROUND_LAYER = "Ground";
 
-    private Vector3 _desiredMovementDirection = Vector3.zero;
-    private Vector3 _desiredLookatPoint = Vector3.zero;
-    private GameObject _target;
+    protected Vector3 _desiredMovementDirection = Vector3.zero;
+    protected Vector3 _desiredLookatPoint = Vector3.zero;
+    protected GameObject _target;
 
 
-    private Rigidbody _rigidBody;
+    protected Rigidbody _rigidBody;
     public Vector3 DesiredMovementDirection
     {
         get { return _desiredMovementDirection; }
@@ -36,7 +36,7 @@ public class MovementBehaviour : MonoBehaviour
         set { _target = value; }
     }
 
-     void Awake()
+    protected virtual void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
     }
@@ -50,7 +50,7 @@ public class MovementBehaviour : MonoBehaviour
             GROUND_CHECK_DISTANCE, LayerMask.GetMask("Ground"));
     }
 
-    private void HandleMovement()
+    protected virtual void HandleMovement()
     {
         Debug.Assert(_rigidBody != null, "Rigidbody does not exist");
         if (_rigidBody == null) return;
@@ -65,7 +65,7 @@ public class MovementBehaviour : MonoBehaviour
 
 
     }
-    private void RotateWithInput()
+    protected void RotateWithInput()
     {
         if (_desiredMovementDirection != Vector3.zero)
         {

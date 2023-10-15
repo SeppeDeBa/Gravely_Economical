@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Aesthetic
   - Interactable
+  - NPCPath
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Building
   - Aesthetic
   - Interactable
-  - 
+  - NPCPath
   - 
   - 
   - 

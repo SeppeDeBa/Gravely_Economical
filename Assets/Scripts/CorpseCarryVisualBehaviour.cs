@@ -24,7 +24,7 @@ public class CorpseCarryVisualBehaviour : MonoBehaviour
         {
             _objectToChangeActiveState.SetActive(_ownerCorpseInventory._holdingCorpse);
             _textMeshToChange.text = _ownerCorpseInventory.GetCorpseName();
-            //_textMeshToChange.color = _ownerCorpseInventory.GetColor();
+           // _textMeshToChange.color = _ownerCorpseInventory.GetColor();
             
         }
 

@@ -67,6 +67,7 @@ public class PlayerCharacter : BasicCharacter
         
         
         _movementBehaviour.DesiredMovementDirection = movement;
+        
     }
 
     private void HandleInteract(InputAction.CallbackContext context)
