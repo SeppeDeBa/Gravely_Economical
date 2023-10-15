@@ -42,6 +42,8 @@ public class CorpseInventory : MonoBehaviour
     }
     public void SwapCorpse(CorpseInventory otherInventory)
     {
+        //TODO: ASK WHY COLOR IS NOT WORKING
+
         //check if you can get from other Invent
         if (otherInventory == null)
         {

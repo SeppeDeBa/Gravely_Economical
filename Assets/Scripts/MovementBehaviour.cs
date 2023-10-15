@@ -65,6 +65,10 @@ public class MovementBehaviour : MonoBehaviour
 
 
     }
+    public void SetMovementSpeed(int movementSpeed)
+    {
+        _movementSpeed = movementSpeed;
+    }
     protected void RotateWithInput()
     {
         if (_desiredMovementDirection != Vector3.zero)

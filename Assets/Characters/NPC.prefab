@@ -34,7 +34,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 39630775716607977}
-  - {fileID: 5695887340980973055}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8155009925624453027
@@ -49,7 +48,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8e874ab1775c545bb9fc1b81018d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _materialToColor: {fileID: 2100000, guid: e28517fc8733a564ea4ad966f86c6dc0, type: 2}
+  _familyInfo:
+    _familyName: 
+    _familyColor: {r: 0, g: 0, b: 0, a: 0}
+    _familySpeed: 0
   _trackingTarget: {fileID: 0}
+  _startPositionObject: {fileID: 0}
+  _distanceToGraveRequired: 2
+  _waitingTimeRequired: 4
+  _hasReachedGrave: 0
+  _isReturning: 0
 --- !u!195 &1474557495101972648
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -85,7 +94,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 1.5
-  _hasReachedGrave: 0
 --- !u!54 &-6343179928566700553
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -140,12 +148,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3004536406373165021}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.081, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6388795734975894441}
+  m_Father: {fileID: 39630775716607977}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8959560977836045925
 MeshFilter:
@@ -248,6 +256,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5695887340980973055}
   m_Father: {fileID: 6388795734975894441}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
