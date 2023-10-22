@@ -11,6 +11,8 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
     public static bool ApplicationQuitting = false;
    
     private static FamilyListScript _instance;
+
+    [SerializeField]
     static List<FamilyInfoStruct> _familyInfoStructs = new List<FamilyInfoStruct>();
 
     public static FamilyListScript Instance
@@ -72,7 +74,7 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
 
     public static FamilyInfoStruct GetRandomFamilyInfoStruct()
     {
-        return _familyInfoStructs[Random.Range(0, _familyInfoStructs.Count-1)];
+        return _familyInfoStructs[Random.Range(0, _familyInfoStructs.Count)];
     }
 
     //ease of use function
@@ -85,8 +87,8 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
 
     private void InstantiateFamilies()
     {
-        AddFamily("MacGees", Color.red, 3);
+        AddFamily("MacGees", Color.red, 9);
         AddFamily("Jimbobs", Color.blue, 5);
-        AddFamily("Chimichangas", Color.magenta, 2);
+        AddFamily("Chimichangas", Color.magenta, 15);
     }
 }

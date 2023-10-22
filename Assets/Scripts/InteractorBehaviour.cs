@@ -32,8 +32,6 @@ public class InteractorBehaviour : MonoBehaviour
                 interactable.Interact(this);
             }
         }
-        
-
     }
 
     private void OnDrawGizmos()

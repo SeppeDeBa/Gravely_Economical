@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
@@ -14,6 +15,7 @@ public class FamilyInfoStruct //has to be a class to be serializable
     public string _familyName;
     public  Color _familyColor;
     public int _familySpeed;
+    
 }
 
 

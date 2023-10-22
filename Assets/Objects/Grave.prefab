@@ -710,6 +710,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prompt: 
   _corpseInventory: {fileID: -3978658870867161928}
+  familyTargets: []
+  _npcTargetPoint: {fileID: 6386159135199195213}
 --- !u!114 &-3978658870867161928
 MonoBehaviour:
   m_ObjectHideFlags: 0

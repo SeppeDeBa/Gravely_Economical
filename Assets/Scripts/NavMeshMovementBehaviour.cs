@@ -16,7 +16,6 @@ public class NavMeshMovementBehaviour : MovementBehaviour
         base.Awake();
         _navMeshAgent= GetComponent<NavMeshAgent>();
         _navMeshAgent.speed = _movementSpeed;
-
         _previousTargetPosition = transform.position;
         _spawnPoint = transform.position;
     }
@@ -24,6 +23,14 @@ public class NavMeshMovementBehaviour : MovementBehaviour
     const float MOVEMENT_EPSILON = 0.25f;
 
 
+    private void Update()
+    {
+        if (_navMeshAgent.speed != _movementSpeed)
+        {
+            _navMeshAgent.speed = _movementSpeed;
+        }
+
+    }
 
     protected override void HandleMovement()
     {

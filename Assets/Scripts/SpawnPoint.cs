@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SpawnPoint : MonoBehaviour
 {
     [SerializeField]
     private GameObject _spawnTemplate = null;
 
+    //private void Start()
+    //{
+    //    _spawnTemplate.GetComponent<>
+    //}
 
     private void OnEnable()
     {
@@ -20,9 +25,19 @@ public class SpawnPoint : MonoBehaviour
             NPCSpawner.Instance.UnRegisterSpawnPoint(this);
     }
 
+    private void Update()
+    {
+        if (Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            Spawn();
+        }
+    }
 
     public GameObject Spawn()
     {
-        return Instantiate(_spawnTemplate, transform.position, transform.rotation);
+        GameObject spawnedGO = Instantiate(_spawnTemplate, transform.position, transform.rotation);
+
+        spawnedGO.GetComponent<NPCBehaviour>().SetStartPositionGO(this.gameObject);
+        return spawnedGO;
     }
 }

@@ -27,7 +27,7 @@ public class CorpseInventory : MonoBehaviour
         if (_holdingCorpse == true && _corpseName == null)
             graveIsValid = false;
 
-        Debug.Assert(graveIsValid, "A grave has a corpse with no name on init!");
+        Debug.Assert(graveIsValid, "A grave has a corpse with no name on in it!");
     }
 
     private void OnDrawGizmos()

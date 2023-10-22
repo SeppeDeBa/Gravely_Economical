@@ -41,7 +41,6 @@ public class NPCSpawner : MonoBehaviour
         ApplicationQuitting = true;
     }
     #endregion
-
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -76,6 +75,7 @@ public class NPCSpawner : MonoBehaviour
 
     private void Update()
     {
+
         _spawnPoints.RemoveAll(s => s == null);
 
         while (_spawnPoints.Remove(null)) { }
