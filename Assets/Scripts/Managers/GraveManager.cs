@@ -70,13 +70,16 @@ public class GraveManager : MonoBehaviour //TODO: Make singletons an inheritance
 
     public static Vector3 GetFamilyTargetPos(FamilyInfoStruct family)
     {
+        bool familyInfoStructFound = false;
         foreach (GraveBehaviour grave in _graveList)
         {
             if (grave.ContainsFamilyTarget(family))
             {
+                familyInfoStructFound = true;
                 return grave.GetTargetPointPos();
             }
         }
+        Debug.Assert(familyInfoStructFound, "familyInfoStruct not found");
         Vector3 tempVector;
         tempVector = Vector3.zero;
         Debug.Log("No target has been found for one of the families in GetFamilyTargetPos");

@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _prompt: 
-  _materialToColor: {fileID: 2100000, guid: e28517fc8733a564ea4ad966f86c6dc0, type: 2}
+  _shopManagerOwner: {fileID: 0}
   _familyInfo:
     _familyName: 
     _familyColor: {r: 0, g: 0, b: 0, a: 0}

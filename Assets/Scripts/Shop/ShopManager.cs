@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
+
 public class ShopManager : MonoBehaviour
 {
     public int coins;
@@ -11,6 +13,8 @@ public class ShopManager : MonoBehaviour
     public GameObject[] _shopPanelsGO;
     public ShopTemplate[] _shopPanels;
     public Button[] _myPurchaseBtns;
+
+    private bool _functionalityActive = true;
 
     void Start()
     {
@@ -43,11 +47,27 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void PurchaseItem(int buttonNumber)
+    {
+        if (coins >= _shopItemSOCollection[buttonNumber].baseCost)
+        {
+            coins -= _shopItemSOCollection[buttonNumber].baseCost;
+            coinUI.text = "Coins: " + coins.ToString();
+            CheckPurchaseable();
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            _functionalityActive = !_functionalityActive;
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                gameObject.transform.GetChild(i).gameObject.SetActive(_functionalityActive);
+            }
+        }
     }
 
     public void LoadPanels()

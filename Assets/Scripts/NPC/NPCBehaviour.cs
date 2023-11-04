@@ -7,6 +7,10 @@ public class NPCBehaviour : BasicCharacter, IInteractable
 
     [SerializeField] private string _prompt;
     private Vector3 _startPosition;
+
+    [SerializeField] Canvas _shopManagerOwner;
+
+    ShopManager _shopManager = null;
     //[SerializeField]
     //string _familyName;
     //[SerializeField]
@@ -47,6 +51,12 @@ public class NPCBehaviour : BasicCharacter, IInteractable
 
     private void Start()
     {
+       //set shop manager owner
+       //_shopManager = _shopManagerOwner.GetComponentInChildren<ShopManager>();
+       _shopManager = GameObject.Find("Shop").GetComponentInChildren<ShopManager>();
+        Debug.Assert(_shopManager!= null, "shopmanager is not found in NPCBehaviour");
+
+
        if (_movementBehaviour == null)
         {
 
@@ -59,14 +69,13 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         }
 
         _trackingTarget = GraveManager.GetFamilyTargetGameObject(_familyInfo);
-        //this._materialToColor.color = _familyInfo._familyColor;
         GetComponentInChildren<Renderer>().material.SetColor("_BaseColor",_familyInfo._familyColor);
         _startPosition = transform.position; 
         Debug.Assert(_trackingTarget!= null, "a tracking target of NPC behaviour is set to null");
 
         Debug.Log( _familyInfo._familySpeed.ToString());//debug to see if number is properly passed
         _movementBehaviour.SetMovementSpeed(_familyInfo._familySpeed); //TODO: ASK WHY MOVSPEED CHANGE IS NOT WORKING
-        
+        HandleMovement();
     }
 
 
@@ -114,7 +123,21 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         if ((transform.position - _movementBehaviour.Target.transform.position).sqrMagnitude < _distanceToGraveRequired) 
         {
             _hasReachedGrave = true;
-           
+
+            CorpseInventory targetCorpseInvent = _trackingTarget.GetComponentInParent<CorpseInventory>();
+
+            if (targetCorpseInvent == null) { Debug.Assert(false, "TrackingTarget does not have a targetFamilyInfo"); } //seperating the if check and assert for extra safety
+
+            else if (_familyInfo._familyName == targetCorpseInvent.GetCorpseName())
+            {
+                _shopManager.AddCoins();
+            }
+            else
+            {
+                _shopManager.AddCoins(-1);
+            }
+
+            
         }
     }
     void HandleMovement()
@@ -129,6 +152,7 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         _waitingTime += Time.deltaTime;
         if (_waitingTime >= _waitingTimeRequired)
         {
+          
             _isReturning = true;
             _movementBehaviour.Target = _startPositionObject;
         }
