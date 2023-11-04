@@ -39,7 +39,7 @@ public class ShopManager : MonoBehaviour
     {
         for (int i = 0; i < _shopItemSOCollection.Length; i++)
         {
-            if (coins >= _shopItemSOCollection[i].baseCost)
+            if (coins >= _shopItemSOCollection[i].baseCost && _shopItemSOCollection[i].hasBeenBought == false)
                 _myPurchaseBtns[i].interactable = true;
             else 
                 _myPurchaseBtns[i].interactable = false ;
@@ -52,6 +52,8 @@ public class ShopManager : MonoBehaviour
         if (coins >= _shopItemSOCollection[buttonNumber].baseCost)
         {
             coins -= _shopItemSOCollection[buttonNumber].baseCost;
+            _shopItemSOCollection[buttonNumber].hasBeenBought = true;
+            _myPurchaseBtns[buttonNumber].GetComponentInChildren<TextMeshProUGUI>().text = "Bought";
             coinUI.text = "Coins: " + coins.ToString();
             CheckPurchaseable();
         }

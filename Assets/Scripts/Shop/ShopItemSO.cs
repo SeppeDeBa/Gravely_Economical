@@ -8,6 +8,11 @@ public class ShopItemSO : ScriptableObject
     public string title;
     public string description;
     public int baseCost;
+    public bool hasBeenBought = false;
 
+    private void OnDisable()//reset since it's a scriptable object
+    {
+        hasBeenBought = false;
+    }
 
 }

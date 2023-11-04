@@ -56,6 +56,7 @@ public class CorpseInventory : MonoBehaviour
         {
             _holdingCorpse = true;
             _corpseName = otherActorInventory._corpseName;
+            otherActorInventory._corpseName = "empty";
             _familyColor = otherActorInventory._familyColor;
             otherActorInventory._holdingCorpse = false;
 
