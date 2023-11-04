@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8e874ab1775c545bb9fc1b81018d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _prompt: 
   _materialToColor: {fileID: 2100000, guid: e28517fc8733a564ea4ad966f86c6dc0, type: 2}
   _familyInfo:
     _familyName: 

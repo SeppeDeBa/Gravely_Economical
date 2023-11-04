@@ -56,7 +56,7 @@ public class CorpseInventory : MonoBehaviour
         {
             _holdingCorpse = true;
             _corpseName = otherActorInventory._corpseName;
-           // _familyColor = otherActorInventory._familyColor;
+            _familyColor = otherActorInventory._familyColor;
             otherActorInventory._holdingCorpse = false;
 
             //debug
@@ -73,7 +73,7 @@ public class CorpseInventory : MonoBehaviour
         {
             _holdingCorpse = false;
             otherActorInventory._corpseName = _corpseName;
-            //otherActorInventory._familyColor = _familyColor;
+            otherActorInventory._familyColor = _familyColor;
             otherActorInventory._holdingCorpse = true;
 
             //debug

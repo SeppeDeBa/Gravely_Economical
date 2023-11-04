@@ -514,6 +514,7 @@ MonoBehaviour:
     type: 3}
   _verticalMovementAction: {fileID: 1948070338022257227, guid: a07065a35ab5d9e4d804a3bcaaade1cf,
     type: 3}
+  _playerCorpseInventory: {fileID: 0}
 --- !u!114 &3485320179010012210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,6 +612,36 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5588301848850970095}
     m_Modifications:
+    - target: {fileID: 1126838607865716280, guid: 0cbd534d7c9c01b4bac142d4e307be17,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 3911049778290561070, guid: 0cbd534d7c9c01b4bac142d4e307be17,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.08372747
+      objectReference: {fileID: 0}
+    - target: {fileID: 3911049778290561070, guid: 0cbd534d7c9c01b4bac142d4e307be17,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.07753687
+      objectReference: {fileID: 0}
+    - target: {fileID: 3911049778290561070, guid: 0cbd534d7c9c01b4bac142d4e307be17,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.10728
+      objectReference: {fileID: 0}
+    - target: {fileID: 6734662840334110667, guid: 0cbd534d7c9c01b4bac142d4e307be17,
+        type: 3}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 6734662840334110667, guid: 0cbd534d7c9c01b4bac142d4e307be17,
+        type: 3}
+      propertyPath: m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6998792623301221453, guid: 0cbd534d7c9c01b4bac142d4e307be17,
         type: 3}
       propertyPath: m_Name

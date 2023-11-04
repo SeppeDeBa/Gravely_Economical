@@ -68,7 +68,7 @@ public class MovementBehaviour : MonoBehaviour
     public void SetMovementSpeed(int movementSpeed)
     {
         _movementSpeed = movementSpeed;
-        Debug.Log( "Movement speed changed");
+        Debug.Log( "Movement speed changed - " + _movementSpeed);
     }
     protected void RotateWithInput()
     {

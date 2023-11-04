@@ -87,8 +87,8 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
 
     private void InstantiateFamilies()
     {
-        AddFamily("MacGees", Color.red, 9);
-        AddFamily("Jimbobs", Color.blue, 5);
-        AddFamily("Chimichangas", Color.magenta, 15);
+        AddFamily("MacGees", Color.red, 1);
+        AddFamily("Jimbobs", Color.blue, 3);
+        AddFamily("Chimichangas", Color.magenta, 5);
     }
 }

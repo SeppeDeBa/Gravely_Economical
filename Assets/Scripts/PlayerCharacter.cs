@@ -14,6 +14,8 @@ public class PlayerCharacter : BasicCharacter
     [SerializeField]
     private InputActionReference _verticalMovementAction;
 
+    [SerializeField]
+    private CorpseInventory _playerCorpseInventory;
 
     private InputAction _interactAction; 
 

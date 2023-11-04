@@ -11,7 +11,6 @@ public class NPCBehaviour : BasicCharacter, IInteractable
     //string _familyName;
     //[SerializeField]
     //Color _familyColor;
-    [SerializeField] Material _materialToColor = null;
     [SerializeField] FamilyInfoStruct  _familyInfo = null;
 
     [SerializeField] private GameObject _trackingTarget;
@@ -36,6 +35,7 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         _stallTimer = 0f;
         return true;
         //TODO: ASK WHY I DO NOT HAVE CONTROL OVER NAVMESH
+        
     }
 
 
@@ -59,7 +59,8 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         }
 
         _trackingTarget = GraveManager.GetFamilyTargetGameObject(_familyInfo);
-        this._materialToColor.color = _familyInfo._familyColor;
+        //this._materialToColor.color = _familyInfo._familyColor;
+        GetComponentInChildren<Renderer>().material.SetColor("_BaseColor",_familyInfo._familyColor);
         _startPosition = transform.position; 
         Debug.Assert(_trackingTarget!= null, "a tracking target of NPC behaviour is set to null");
 

@@ -13,11 +13,6 @@ public class NPCNavMeshMovementBehaviour : NavMeshMovementBehaviour
         // no real point?
     }
 
-    private void Update()
-    {
-        
-    }
-
 
 
 }
