@@ -34,6 +34,12 @@ public class PlayerCharacter : BasicCharacter
         _interactAction.performed += HandleInteract;
     }
 
+    
+    public void increaseMovementSpeed(float msIncrease)
+    {
+        _movementBehaviour.AddMovementSpeed(msIncrease);
+    }
+
     private void OnEnable()
     {
         if (_inputAsset == null) return;

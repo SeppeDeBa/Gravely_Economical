@@ -32,11 +32,23 @@ public class NPCBehaviour : BasicCharacter, IInteractable
 
 
     public string InteractionPrompt => _prompt;
+
+
     public bool Interact(InteractorBehaviour interactor)
     {
         Debug.Log("Interacted with npc");
+        if (!_isReturning)
+        {
         _isStalled = true;
+        _movementBehaviour._isPaused = true;
+        _movementBehaviour.SetMovementSpeed(0);
         _stallTimer = 0f;
+
+        }
+        else
+        {
+            _movementBehaviour.SetMovementSpeed(5);
+        }
         return true;
         //TODO: ASK WHY I DO NOT HAVE CONTROL OVER NAVMESH
         
@@ -51,6 +63,7 @@ public class NPCBehaviour : BasicCharacter, IInteractable
 
     private void Start()
     {
+        NPCSpawner._npcsExist += 1;
        //set shop manager owner
        //_shopManager = _shopManagerOwner.GetComponentInChildren<ShopManager>();
        _shopManager = GameObject.Find("Shop").GetComponentInChildren<ShopManager>();
@@ -78,6 +91,10 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         HandleMovement();
     }
 
+    private void OnDestroy()
+    {
+        NPCSpawner._npcsExist -= 1;
+    }
 
     private void Update()
     {
@@ -100,14 +117,18 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         else
         {
             _stallTimer += Time.deltaTime;
-            if (_stallTimer > _stallTimerMax)
+            if (_stallTimer > _stallTimerMax + ShopManager._stallTimerIncrease)
             {
                 _stallTimer = 0;
                 _isStalled = false;
+                _movementBehaviour._isPaused = false;
+                _movementBehaviour.ResetMovementSpeed();
             }
         }
 
     }
+
+
 
     void DespawnOnReturning()
     {
@@ -120,6 +141,10 @@ public class NPCBehaviour : BasicCharacter, IInteractable
 
     void CheckIfGraveIsReached()
     {
+        if (_movementBehaviour.Target == null)
+        {
+            Debug.Assert(_movementBehaviour.Target != null, "Target is null for: " + _familyInfo._familyName);
+        }
         if ((transform.position - _movementBehaviour.Target.transform.position).sqrMagnitude < _distanceToGraveRequired) 
         {
             _hasReachedGrave = true;
@@ -135,6 +160,7 @@ public class NPCBehaviour : BasicCharacter, IInteractable
             else
             {
                 _shopManager.AddCoins(-1);
+                
             }
 
             

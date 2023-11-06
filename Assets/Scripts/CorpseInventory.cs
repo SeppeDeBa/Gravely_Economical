@@ -28,6 +28,16 @@ public class CorpseInventory : MonoBehaviour
             graveIsValid = false;
 
         Debug.Assert(graveIsValid, "A grave has a corpse with no name on in it!");
+
+        if (!string.IsNullOrEmpty(_corpseName) && graveIsValid && _holdingCorpse)
+        {
+            var tempCorpseFamInfo = FamilyListScript.GetFamilyInfoStruct(_corpseName);
+            if (tempCorpseFamInfo != null)
+            {
+                _familyColor = tempCorpseFamInfo._familyColor;
+            }
+        }
+
     }
 
     private void OnDrawGizmos()

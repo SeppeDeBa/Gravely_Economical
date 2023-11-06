@@ -6,6 +6,10 @@ public class GraveBehaviour : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _prompt;
 
+    [SerializeField] private GameObject _family1Gravestone;
+    [SerializeField] private GameObject _family2Gravestone;
+    [SerializeField] private GameObject _family3Gravestone;
+
     [SerializeField]
     CorpseInventory _corpseInventory;
 
@@ -22,6 +26,42 @@ public class GraveBehaviour : MonoBehaviour, IInteractable
     public void Start()
     {
         GraveManager.AddGrave(this);//add self to the grave manager
+        FamilyInfoStruct familyScriptBuffer = new FamilyInfoStruct("empty", Color.gray, 0); //need to make a full object so that the default color would be gray
+        if (_familyTargets.Count == 0)
+        {
+            _family1Gravestone.SetActive(false);
+            _family2Gravestone.SetActive(false);
+            _family3Gravestone.SetActive(false);
+        }
+        else
+        {
+            //family stone 1
+            if (_familyTargets.Count > 0)
+            {
+                familyScriptBuffer = FamilyListScript.GetFamilyInfoStruct(_familyTargets[0]._familyName);
+            }
+            _family1Gravestone.GetComponent<Renderer>().material.SetColor("_BaseColor", familyScriptBuffer._familyColor);
+
+            //family stone 2
+            if (_familyTargets.Count > 1)
+
+            {
+                familyScriptBuffer = FamilyListScript.GetFamilyInfoStruct(_familyTargets[1]._familyName);
+            }
+            _family2Gravestone.GetComponent<Renderer>().material.SetColor("_BaseColor", familyScriptBuffer._familyColor);
+
+            //family stone 3
+            if (_familyTargets.Count > 2)
+
+            {
+                familyScriptBuffer = FamilyListScript.GetFamilyInfoStruct(_familyTargets[2]._familyName);
+                _family3Gravestone.GetComponent<Renderer>().material.SetColor("_BaseColor", familyScriptBuffer._familyColor);
+            }
+            else
+            {
+                _family3Gravestone.SetActive(false);
+            }
+        }
     }
 
 

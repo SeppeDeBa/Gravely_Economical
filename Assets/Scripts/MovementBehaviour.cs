@@ -8,6 +8,9 @@ public class MovementBehaviour : MonoBehaviour
     [SerializeField]
     protected float _movementSpeed = 1.0f;
 
+    private float _startMovementSpeed;
+
+    public bool _isPaused = false;
 
     bool _isGrounded = false;
     protected const float GROUND_CHECK_DISTANCE = 0.2f;
@@ -41,10 +44,22 @@ public class MovementBehaviour : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
     }
 
+
+    protected virtual void Start()
+    {
+        _startMovementSpeed = _movementSpeed;
+    }
     protected virtual void FixedUpdate()
     {
-        HandleMovement();
-        RotateWithInput();
+        if (!_isPaused)
+        {
+            HandleMovement();
+            RotateWithInput();
+        }
+        else
+        {
+            _rigidBody.velocity = Vector3.zero; 
+        }
         //check ground collision
         _isGrounded = Physics.Raycast(transform.position + Vector3.up * 0.1f, Vector3.down,
             GROUND_CHECK_DISTANCE, LayerMask.GetMask("Ground"));
@@ -70,6 +85,17 @@ public class MovementBehaviour : MonoBehaviour
         _movementSpeed = movementSpeed;
         Debug.Log( "Movement speed changed - " + _movementSpeed);
     }
+
+    public void AddMovementSpeed(float movementSpeedIncrease)
+    {
+        _movementSpeed += movementSpeedIncrease;
+
+    }
+    public void ResetMovementSpeed()
+    {
+        _movementSpeed = _startMovementSpeed;
+    }
+
     protected void RotateWithInput()
     {
         if (_desiredMovementDirection != Vector3.zero)

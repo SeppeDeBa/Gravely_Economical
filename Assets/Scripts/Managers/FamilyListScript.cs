@@ -15,6 +15,10 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
     [SerializeField]
     static List<FamilyInfoStruct> _familyInfoStructs = new List<FamilyInfoStruct>();
 
+    [SerializeField]
+    List<FamilyInfoStruct> _familyInfoStructsOnCreation = new List<FamilyInfoStruct>();
+
+
     public static FamilyListScript Instance
     {
         get
@@ -72,6 +76,17 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
 
 
 
+    public static FamilyInfoStruct GetFamilyInfoStruct(string familyName)
+    {
+        foreach(FamilyInfoStruct familyInfo in _familyInfoStructs)
+        {
+            if (familyInfo._familyName == familyName) return familyInfo;
+        }
+
+        Debug.Log(("Following Family could not be found:" + familyName));
+        return null;
+    }
+
     public static FamilyInfoStruct GetRandomFamilyInfoStruct()
     {
         return _familyInfoStructs[Random.Range(0, _familyInfoStructs.Count)];
@@ -87,8 +102,14 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
 
     private void InstantiateFamilies()
     {
-        AddFamily("MacGees", Color.red, 1);
-        AddFamily("Jimbobs", Color.blue, 3);
-        AddFamily("Chimichangas", Color.magenta, 5);
+        foreach (var family in _familyInfoStructsOnCreation)
+        {
+            AddFamily(family._familyName, family._familyColor, family._familySpeed);
+        }
+
+        Debug.Log(_familyInfoStructsOnCreation.Count.ToString());
+       // AddFamily("MacGees", Color.red, 1);
+        //AddFamily("Jimbobs", Color.blue, 3);
+        //AddFamily("Chimichangas", Color.magenta, 5);
     }
 }

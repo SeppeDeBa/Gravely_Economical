@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.InputSystem;
 
 public class NPCSpawner : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class NPCSpawner : MonoBehaviour
     //TODO: Ask if using singleton for this is a bad practice, is there a better way to know where all the graves are?
     //[SerializeField] private static FamilyListScript _familyList; //TODO: Think abt singleton usage 2.0 (check the todo of FamilyListScript.cs
     private static NPCSpawner _instance;
+
+    public static int _currentDay = 0;
+    public static int _npcsExist = 0;
 
     public static NPCSpawner Instance
     {
@@ -41,6 +46,9 @@ public class NPCSpawner : MonoBehaviour
         ApplicationQuitting = true;
     }
     #endregion
+
+
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -73,8 +81,85 @@ public class NPCSpawner : MonoBehaviour
         _spawnPoints.Remove(spawnPoint);
     }
 
+
+
+    //SPAWNING HAPPENS HERE
+    //variables:
+
+    private const float _spawnTimerMax = 4f;
+    private float _spawnTimer;
+
+    private const float _dayTimerMax = 30f;
+    private float _dayTimer = 0f;
+
+    private bool _daytime = false;
+    private bool _daytimeIsOver = false;
+
+    const  float _difficultyScalePerDay = 1.3f;
+
+    [SerializeField] GameObject _directionalLight;
+    [SerializeField] GameObject _gateGO;
+    private const float _dayTimeRotation = 50f;
+    private const float _nightTimeRotation = 170f;
+    public void StartDayTime()
+    {
+        if (!_daytime)
+        {
+            _gateGO.SetActive(false);
+            ++_currentDay;
+            _daytime = true;
+            _spawnTimer = 0;
+            _dayTimer = 0;
+            _daytimeIsOver = false;
+            _directionalLight.transform.Rotate(-120f, 0f, 0f); //TODO remove magic number
+            Debug.Log("StartDayTime is called");
+        }
+    }
+
+
+
+
+    private void EndDay()
+    {
+
+    }
+
+  
     private void Update()
     {
+        if (Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            SpawnWave();
+        }
+
+
+        //check to end day
+        if (_dayTimer > _dayTimerMax && _daytimeIsOver && _npcsExist == 0 && _daytime)
+        {
+            _gateGO.SetActive(true);
+            _daytime = false;
+            _directionalLight.transform.Rotate(120f, 0f, 0f);
+            Debug.Log("EndDayTime is called");
+        }
+        // check if dayTime Is over
+        else if (_daytime && !_daytimeIsOver && _dayTimer > _dayTimerMax)
+        {
+            _daytimeIsOver = true;
+        }
+        //update day Timers if its day
+        else if (_daytime && !_daytimeIsOver)
+        {
+            _dayTimer += Time.deltaTime;
+            //creating speed difficulty
+            _spawnTimer += Time.deltaTime * Mathf.Pow(_difficultyScalePerDay, _currentDay);
+             if (_spawnTimer > _spawnTimerMax)
+            {
+                SpawnWave();
+                _spawnTimer = 0;
+            }
+        }
+
+
 
         _spawnPoints.RemoveAll(s => s == null);
 
@@ -87,6 +172,9 @@ public class NPCSpawner : MonoBehaviour
         {
             point.Spawn();
         }
+
+
+        Debug.Log("number of spawnpoints" + _spawnPoints.Count.ToString());
     }
 
 

@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: North Grave Storage
   m_EditorClassIdentifier: 
   title: Northern grave storage
-  description: You've finally found a proper use for that pesky corner
-  baseCost: 500
+  description: Hire someone to remove that big rock blocking extra storage space!
+  baseCost: 25
+  hasBeenBought: 0

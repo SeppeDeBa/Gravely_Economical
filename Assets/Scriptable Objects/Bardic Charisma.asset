@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Bardic Charisma
   m_EditorClassIdentifier: 
   title: Bardic Charisma
-  description: Your way with words allows you to distract clients for longer
+  description: Your way with words allows you to distract clients for two seconds
+    longer
   baseCost: 10
+  hasBeenBought: 0
