@@ -12,11 +12,11 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
    
     private static FamilyListScript _instance;
 
-    [SerializeField]
-    static List<FamilyInfoStruct> _familyInfoStructs = new List<FamilyInfoStruct>();
+    //static List<FamilyInfoStruct> _familyInfoStructs = new List<FamilyInfoStruct>();
 
     [SerializeField]
     List<FamilyInfoStruct> _familyInfoStructsOnCreation = new List<FamilyInfoStruct>();
+    public List<FamilyInfoStruct> FamilyInfoStructsOnCreation { get { return _familyInfoStructsOnCreation; } }
 
 
     public static FamilyListScript Instance
@@ -55,7 +55,7 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
         if (_instance == null)
         {
             _instance = this;
-            InstantiateFamilies();
+            //InstantiateFamilies();
 
 
         }
@@ -78,7 +78,7 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
 
     public static FamilyInfoStruct GetFamilyInfoStruct(string familyName)
     {
-        foreach(FamilyInfoStruct familyInfo in _familyInfoStructs)
+        foreach(FamilyInfoStruct familyInfo in Instance.FamilyInfoStructsOnCreation)
         {
             if (familyInfo._familyName == familyName) return familyInfo;
         }
@@ -89,14 +89,14 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
 
     public static FamilyInfoStruct GetRandomFamilyInfoStruct()
     {
-        return _familyInfoStructs[Random.Range(0, _familyInfoStructs.Count)];
+        return Instance.FamilyInfoStructsOnCreation[Random.Range(0, Instance.FamilyInfoStructsOnCreation.Count)];
     }
 
     //ease of use function
-    private static void AddFamily(string familyName, Color familyColor, int familySpeed)
+    /*private static void AddFamily(string familyName, Color familyColor, int familySpeed)
     {
         FamilyInfoStruct familyStructBuffer = new FamilyInfoStruct(familyName, familyColor, familySpeed);
-        _familyInfoStructs.Add(familyStructBuffer);
+        Instance.FamilyInfoStructsOnCreation.Add(familyStructBuffer);
     }
 
 
@@ -111,5 +111,5 @@ public class FamilyListScript : MonoBehaviour //TODO: Make singletons an inherit
        // AddFamily("MacGees", Color.red, 1);
         //AddFamily("Jimbobs", Color.blue, 3);
         //AddFamily("Chimichangas", Color.magenta, 5);
-    }
+    }*/
 }

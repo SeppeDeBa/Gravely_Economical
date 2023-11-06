@@ -47,7 +47,7 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         }
         else
         {
-            _movementBehaviour.SetMovementSpeed(5);
+            _movementBehaviour.SetMovementSpeed(10000);
         }
         return true;
         //TODO: ASK WHY I DO NOT HAVE CONTROL OVER NAVMESH
@@ -79,6 +79,10 @@ public class NPCBehaviour : BasicCharacter, IInteractable
         {
             //TODO: How to do without changing the material color? Is there instancing?
             _familyInfo = FamilyListScript.GetRandomFamilyInfoStruct(); // familyListScript is a singleton
+        }
+        else
+        {
+            Debug.Assert(false, "_famInfo = null");
         }
 
         _trackingTarget = GraveManager.GetFamilyTargetGameObject(_familyInfo);
@@ -162,7 +166,7 @@ public class NPCBehaviour : BasicCharacter, IInteractable
             }
             else
             {
-                _shopManager.AddCoins(-_coinsPerSuccess);
+                //_shopManager.AddCoins(-_coinsPerSuccess);
                 Debug.Log("Adding negative coins");
             }
 

@@ -170,7 +170,7 @@ public class ShopManager : MonoBehaviour
         {
             tree.SetActive(true);
             Debug.Log("TreeSetActive");
-            _extraCoins += 1;
+            _extraCoins += 2;
         }
     }
 
@@ -180,7 +180,7 @@ public class ShopManager : MonoBehaviour
         {
             road.GetComponentInChildren<Renderer>().material = _roadMaterial;
             road.SetActive(true);
-            _extraCoins += 1;
+            _extraCoins += 2;
         }
     }
 
