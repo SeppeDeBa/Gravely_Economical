@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Fancy Roads
   description: These roads are sure to make people happier! +1 coin per customer
-  baseCost: 30
+  baseCost: 100
   hasBeenBought: 0

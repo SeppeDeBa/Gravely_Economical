@@ -86,10 +86,10 @@ public class NPCSpawner : MonoBehaviour
     //SPAWNING HAPPENS HERE
     //variables:
 
-    private const float _spawnTimerMax = 4f;
+    private const float _spawnTimerMax = 6f;
     private float _spawnTimer;
 
-    private const float _dayTimerMax = 30f;
+    private const float _dayTimerMax = 45f;
     private float _dayTimer = 0f;
 
     private bool _daytime = false;
@@ -107,6 +107,7 @@ public class NPCSpawner : MonoBehaviour
         {
             _gateGO.SetActive(false);
             ++_currentDay;
+            ShopManager._dayCountIsDirty = true;
             _daytime = true;
             _spawnTimer = 0;
             _dayTimer = 0;
@@ -155,7 +156,7 @@ public class NPCSpawner : MonoBehaviour
              if (_spawnTimer > _spawnTimerMax)
             {
                 SpawnWave();
-                _spawnTimer = 0;
+                _spawnTimer -= _spawnTimerMax;
             }
         }
 

@@ -15,17 +15,21 @@ public class ShopManager : MonoBehaviour
     public ShopTemplate[] _shopPanels;
     public Button[] _myPurchaseBtns;
 
-    static public float _stallTimerIncrease = 0;
+    public int _extraCoins = 0;
 
+    static public float _stallTimerIncrease = 0;
+    static public bool _dayCountIsDirty = false;
 
     [SerializeField] GameObject _moneyCountGO;
-    
+    [SerializeField] GameObject _dayCountGO;
+
     [SerializeField] Material _roadMaterial;
 
     
 
     [SerializeField] GameObject _rockToRemove;
     [SerializeField] GameObject _playerGO;
+    [SerializeField] GameObject _cameraGO;
 
     static List<GameObject> _treesList = new List<GameObject>();
     static List<GameObject> _roadsList = new List<GameObject>();
@@ -47,15 +51,23 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             var gameObjectToCheck = gameObject.transform.GetChild(i).gameObject;
-            if (gameObjectToCheck != _moneyCountGO)
+            if (gameObjectToCheck != _moneyCountGO && gameObjectToCheck != _dayCountGO)
                 gameObjectToCheck.SetActive(_functionalityActive);
         }
     }
+
+
+    public void SetDayText()
+    {
+        _dayCountGO.GetComponent<TextMeshProUGUI>().text = ("Day: " + NPCSpawner._currentDay);
+        _dayCountIsDirty = false;
+    }
+
     public void AddCoins(int coinsAdded = 1)
     {
-
-
-        coins += coinsAdded;
+        Debug.Log("Coins being added:" + coinsAdded.ToString());
+        int coinsToAdd = coinsAdded + _extraCoins;
+        coins += coinsToAdd;
         if (coins < 0) { coins = 0; };
         coinUI.text = "Coins: " + coins.ToString();
         CheckPurchaseable();
@@ -95,6 +107,12 @@ public class ShopManager : MonoBehaviour
         //Debug.Assert(hitboxScript != null, "hitboxScript is null in ShopManager Object");
 
         //if ()
+        if (_dayCountIsDirty)
+        {
+            SetDayText();
+        
+        }
+
 
         if (Keyboard.current.lKey.wasPressedThisFrame)
         {
@@ -102,7 +120,7 @@ public class ShopManager : MonoBehaviour
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
                 var gameObjectToCheck = gameObject.transform.GetChild(i).gameObject;
-                if (gameObjectToCheck != _moneyCountGO)
+                if (gameObjectToCheck != _moneyCountGO && gameObjectToCheck != _dayCountGO)
                     gameObjectToCheck.SetActive(_functionalityActive);
             }
         }
@@ -114,7 +132,7 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             var gameObjectToCheck = gameObject.transform.GetChild(i).gameObject;
-            if (gameObjectToCheck != _moneyCountGO)
+            if (gameObjectToCheck != _moneyCountGO && gameObjectToCheck != _dayCountGO)
                 gameObjectToCheck.SetActive(_functionalityActive);
         }
     }
@@ -152,6 +170,7 @@ public class ShopManager : MonoBehaviour
         {
             tree.SetActive(true);
             Debug.Log("TreeSetActive");
+            _extraCoins += 1;
         }
     }
 
@@ -159,10 +178,9 @@ public class ShopManager : MonoBehaviour
     {
         foreach (GameObject road in _roadsList)
         {
-           road.GetComponentInChildren<Renderer>().material = _roadMaterial;
-
-
+            road.GetComponentInChildren<Renderer>().material = _roadMaterial;
             road.SetActive(true);
+            _extraCoins += 1;
         }
     }
 
@@ -212,5 +230,13 @@ public class ShopManager : MonoBehaviour
         Debug.Assert(PCBehaviour != null, "PlayerChar is null in ShopManager.SpeedUpPlayer()");
 
         PCBehaviour.increaseMovementSpeed(2f);
+    }
+
+
+    public void ShowCamera()
+    {
+        Debug.Assert(_cameraGO != null, "PlayerChar is null in ShopManager.SpeedUpPlayer()");
+
+        _cameraGO.SetActive(true);
     }
 }

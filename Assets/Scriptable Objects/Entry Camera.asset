@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Entry Camera
   description: You install a camera you can see from anywhere at the entrance
-  baseCost: 15
+  baseCost: 250
   hasBeenBought: 0

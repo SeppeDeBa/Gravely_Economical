@@ -1079,6 +1079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _holdingCorpse: 0
   _corpseName: 
+  _goToColor: {fileID: 811814288587210699}
   _ownerName: Grave
   _familyColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &404086707920096396

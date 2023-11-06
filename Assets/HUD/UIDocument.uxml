@@ -1,3 +1,3 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Label tabindex="-1" text="TestMode:&#10;WASD = move&#10;Spacebar = interact&#10;K = Spawn Client" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="visibility: visible; overflow: visible; color: rgb(245, 41, 231);" />
+    <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="visibility: visible; overflow: visible; color: rgb(245, 41, 231);" />
 </ui:UXML>

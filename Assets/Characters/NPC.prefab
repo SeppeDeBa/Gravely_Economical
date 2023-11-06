@@ -55,6 +55,7 @@ MonoBehaviour:
     _familyName: 
     _familyColor: {r: 0, g: 0, b: 0, a: 0}
     _familySpeed: 0
+  _coinsPerSuccess: 5
   _trackingTarget: {fileID: 0}
   _startPositionObject: {fileID: 0}
   _distanceToGraveRequired: 2
@@ -96,6 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _movementSpeed: 5
+  _isPaused: 0
 --- !u!54 &-6343179928566700553
 Rigidbody:
   m_ObjectHideFlags: 0

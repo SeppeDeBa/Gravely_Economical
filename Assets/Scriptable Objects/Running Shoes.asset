@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Running Shoes
   description: Put some wings on your rubber boots and go even faster!
-  baseCost: 7
+  baseCost: 125
   hasBeenBought: 0

@@ -16,7 +16,7 @@ public class NPCBehaviour : BasicCharacter, IInteractable
     //[SerializeField]
     //Color _familyColor;
     [SerializeField] FamilyInfoStruct  _familyInfo = null;
-
+    [SerializeField] private int _coinsPerSuccess = 5;
     [SerializeField] private GameObject _trackingTarget;
     [SerializeField] private GameObject _startPositionObject;
     [SerializeField] private float _distanceToGraveRequired = 2f; //serialized for debugging and manual changing
@@ -151,16 +151,19 @@ public class NPCBehaviour : BasicCharacter, IInteractable
 
             CorpseInventory targetCorpseInvent = _trackingTarget.GetComponentInParent<CorpseInventory>();
 
+            Debug.Log("Trying to add coins: " + _coinsPerSuccess.ToString()) ;
             if (targetCorpseInvent == null) { Debug.Assert(false, "TrackingTarget does not have a targetFamilyInfo"); } //seperating the if check and assert for extra safety
+
 
             else if (_familyInfo._familyName == targetCorpseInvent.GetCorpseName())
             {
-                _shopManager.AddCoins();
+                _shopManager.AddCoins(_coinsPerSuccess);
+                Debug.Log("Adding bonus coins");
             }
             else
             {
-                _shopManager.AddCoins(-1);
-                
+                _shopManager.AddCoins(-_coinsPerSuccess);
+                Debug.Log("Adding negative coins");
             }
 
             

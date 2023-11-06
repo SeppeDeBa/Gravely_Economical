@@ -15,6 +15,8 @@ public class CorpseInventory : MonoBehaviour
     [SerializeField]
     private string _corpseName = null;
 
+    [SerializeField] GameObject _goToColor = null;
+
     [SerializeField]
     private string _ownerName = null; //for debugging purposes
     [SerializeField]
@@ -38,6 +40,7 @@ public class CorpseInventory : MonoBehaviour
             }
         }
 
+        ResetGOColor();
     }
 
     private void OnDrawGizmos()
@@ -50,6 +53,13 @@ public class CorpseInventory : MonoBehaviour
 
         }
     }
+    public void ResetGOColor()
+    {
+        var toColor = _goToColor.GetComponent<Renderer>();
+        Debug.Assert(toColor != null, "toColor in corpseInventory is null");
+        toColor.material.SetColor("_BaseColor", _familyColor);
+    }
+
     public void SwapCorpse(CorpseInventory otherInventory)
     {
         //TODO: ASK WHY COLOR IS NOT WORKING
@@ -95,14 +105,33 @@ public class CorpseInventory : MonoBehaviour
             _CarryingBehaviourDirtyFlag = true;
         }
 
+        else if (_holdingCorpse && otherActorInventory._holdingCorpse)
+        {
+            FamilyInfoStruct infoBuffer = new FamilyInfoStruct("empty", Color.gray, 1000);
+            infoBuffer._familyColor = _familyColor;
+            infoBuffer._familyName = _corpseName;
+            _corpseName = otherActorInventory._corpseName;
+            _familyColor = otherActorInventory._familyColor;
+
+            otherActorInventory._corpseName = infoBuffer._familyName;
+            otherActorInventory._familyColor = infoBuffer._familyColor;
+
+            debugString += _ownerName;
+            debugString += " to ";
+            debugString += otherActorInventory._ownerName;
+            debugString += " and back";
+        }
+
         else
         {
             debugString = "Not a valid swap condition";
         }
       
         Debug.Log(debugString);
+        ResetGOColor();
+        otherActorInventory.ResetGOColor();
         
-        
+
     }
 
     public bool IsCarryingDirty()

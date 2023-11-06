@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Northern grave storage
   description: Hire someone to remove that big rock blocking extra storage space!
-  baseCost: 25
+  baseCost: 100
   hasBeenBought: 0

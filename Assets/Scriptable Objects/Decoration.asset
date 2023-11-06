@@ -15,5 +15,5 @@ MonoBehaviour:
   title: Greens
   description: Plant beautiful bushes that will make clients happier! +1 coin per
     client
-  baseCost: 0
+  baseCost: 125
   hasBeenBought: 0
